@@ -17,7 +17,7 @@ local humanoid = enemy:FindFirstChildOfClass("Humanoid") or Instance.new("Humano
 
 ## 👀 Part 2: How Far Our enemy Can See
 
-```
+```lua
 local maxAngleDegrees = 60
 local maxDistance = 30
 ```
@@ -27,7 +27,7 @@ local maxDistance = 30
 
 ## 🛣️ Part 3: enemy's GPS System
 
-```
+```lua
 local pathfinding = game:GetService("PathfindingService")
 ```
 
@@ -35,7 +35,7 @@ local pathfinding = game:GetService("PathfindingService")
 
 ## 🚶 Part 4: Making the enemy Walk Nicely
 
-```
+```lua
 humanoid.WalkSpeed = 16
 humanoid:SetStateEnabled(Enum.HumanoidStateType.Climbing, false)
 humanoid:SetStateEnabled(Enum.HumanoidStateType.Seated, false)
@@ -46,7 +46,7 @@ humanoid:SetStateEnabled(Enum.HumanoidStateType.Seated, false)
 
 ## 🔦 Part 5: The enemy's Flashlight Vision
 
-```
+```lua
 local raycastParams = RaycastParams.new()
 raycastParams.FilterDescendantsInstances = {enemy}
 raycastParams.FilterType = Enum.RaycastFilterType.Blacklist
@@ -57,7 +57,7 @@ raycastParams.FilterType = Enum.RaycastFilterType.Blacklist
 
 ## 👁️ Part 6: How the enemy Spies Players
 
-```
+```lua
 local function canSeePlayer(targetRoot)
 local direction = (targetRoot.Position - rootPart.Position)
 local distance = direction.Magnitude
@@ -68,7 +68,7 @@ local distance = direction.Magnitude
 
 ## 📐 Part 7: Checking the Vision Cone
 
-```
+```lua
 if distance > maxDistance then return false end
 
 local lookVector = rootPart.CFrame.LookVector
@@ -81,7 +81,7 @@ if angle > maxAngleDegrees then return false end
 
 ## 🧱 Part 8: Wall Detection
 
-```
+```lua
     local rayResult = workspace:Raycast(
         rootPart.Position + Vector3.new(0,1.5,0),
         direction,
@@ -103,7 +103,7 @@ if angle > maxAngleDegrees then return false end
 
 ## 🏃 Part 9: Chasing Players
 
-```
+```lua
     local function chasePlayer(target)
     local targetRoot = target.Character.HumanoidRootPart
     local lastSeenPosition = targetRoot.Position
@@ -114,7 +114,7 @@ if angle > maxAngleDegrees then return false end
 
 🗺️ Part 10: Using the GPS
 
-```
+```lua
     while task.wait(0.5) and target.Character do
         if canSeePlayer(targetRoot) then
             lastSeenPosition = targetRoot.Position
@@ -131,7 +131,7 @@ if angle > maxAngleDegrees then return false end
 
 ## 🚶➡️🏃 Part 11: Following the Path
 
-```
+```lua
             path:ComputeAsync(rootPart.Position, lastSeenPosition)
 
             if path.Status == Enum.PathStatus.Success then
@@ -148,7 +148,7 @@ if angle > maxAngleDegrees then return false end
 
 ## 👋 Part 12: Main Game Loop
 
-```
+```lua
 while task.wait(0.3) do
     for _, player in ipairs(game.Players:GetPlayers()) do
         if player.Character then
