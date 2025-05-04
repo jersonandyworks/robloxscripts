@@ -4,7 +4,7 @@ Let's break down the enemy code like we're telling a story about a enemy guard!
 
 ## 🌍 Part 1: Setting Up Our enemy Guard
 
-```
+```lua
 local enemy = script.Parent
 local rootPart = enemy:WaitForChild("HumanoidRootPart")
 local humanoid = enemy:FindFirstChildOfClass("Humanoid") or Instance.new("Humanoid", enemy)
