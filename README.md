@@ -1,4 +1,4 @@
-# Explaining the Enemy Code Like You're 9 Years Old 🧒🎮
+# Explaining the Enemy Code 🧒🎮
 
 Let's break down the enemy code like we're telling a story about a enemy guard!
 
